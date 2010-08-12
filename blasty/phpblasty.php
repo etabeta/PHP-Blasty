@@ -279,7 +279,7 @@ class phpBlasty {
   static function flushYui() {
     //print_r(self::$yui_component);
     foreach (self::$yui_component as $key => $val) {
-      if (isset(self::$yui_component[$key]['loaded']) AND !self::$yui_component[$key]['flushed']) {
+      if (isset(self::$yui_component[$key]['loaded']) AND !isset(self::$yui_component[$key]['flushed'])) {
         //$obj = $key::getInstance();
         $obj = self::$yui_component[$key]['obj'];
         //echo $key . ': ';
@@ -327,8 +327,8 @@ class phpBlasty {
    */
   static function getPath() {
     if (count(self::$_path) == 0) {
-      self::$_path['base_path']  = realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . '..') . DIRECTORY_SEPARATOR;
-      self::$_path['blasty']     = self::$_path['base_path'] . 'blasty' . DIRECTORY_SEPARATOR;
+      self::$_path['base_path']  = realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR;
+      self::$_path['blasty']     = self::$_path['base_path'];
       self::$_path['loader']     = self::$_path['blasty'] . self::$phpblasty_config['yui_loader'] . 'loader' . DIRECTORY_SEPARATOR;
       self::$_path['components'] = self::$_path['blasty'] . 'components' .DIRECTORY_SEPARATOR;
       self::$_path['language']   = self::$_path['blasty'] . 'language' .DIRECTORY_SEPARATOR;

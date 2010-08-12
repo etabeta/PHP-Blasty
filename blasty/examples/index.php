@@ -28,7 +28,7 @@
       <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
         <tr>
           <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
-          <td id="breadcrumb_right"><a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;<a href="blasty/user_guide/index.html">PHP Blasty User Guide</a></td>
+          <td id="breadcrumb_right"><a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;<a href="../user_guide/index.html">PHP Blasty User Guide</a></td>
         </tr>
       </table>
     </div>
