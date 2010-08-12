@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Datatable Widget : PHP Blasty User Guide</title>
+
+    <link  href="../images/favicon.gif" rel="icon" type="image/gif"/>
+    <style type='text/css' media='all'>@import url('../css/user_guide.css');</style>
+    <link rel='stylesheet' type='text/css' media='all' href='../user_guide.css' />
+
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/prototype.lite.js"></script>
+    <script type="text/javascript" src="../js/moo.fx.js"></script>
+    <script type="text/javascript" src="../js/user_guide_menu.js"></script>
+
+    <meta http-equiv='expires' content='-1' />
+    <meta http-equiv= 'pragma' content='no-cache' />
+    <meta name='robots' content='all' />
+    <meta name='author' content='Fabio Ingala' />
+    <meta name='description' content='PHP Blasty User Guide' />
+
+  </head>
+  <body>
+
+    <!-- START NAVIGATION -->
+    <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+    <div id="masthead">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+        <tr>
+          <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
+          <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <!-- START BREADCRUMB -->
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tr>
+        <td id="breadcrumb">
+          <a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;
+          <a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+          Datatable Widget
+        </td>
+        <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="blasty.sourceforge.net/user_guide/" />Search PHP Blasty User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+      </tr>
+    </table>
+    <!-- END BREADCRUMB -->
+
+    <br clear="all" />
+
+    <!-- START CONTENT -->
+    <div id="ug-content">
+
+      <h1>Datatable Widget</h1>
+      <p>The Datatable widget provides functions that enable you to embed the <a href="http://developer.yahoo.com/yui/datatable/">YUI datatable widget</a> in your page.</p>
+
+      <h2>Initializing the Class</h2>
+      <p>Like in CodeIgniter, the Autocomplete Widget is initialized in your controller using the <dfn>$this->ciwy->load_widget</dfn> function:</p>
+
+      <code>$this->ciwy->load_widget('calendar');</code>
+      <p>Once loaded, the Autocomplete Widget object will be available using: <dfn>$this->ciwy->calendar</dfn></p>
+
+      <h2>Examples</h2>
+      <p>Here is an example showing how you can create a calendar widget setting some properties.</p>
+      <code>
+        $this->ciwy->load_widget('calendar');<br />
+        $this->ciwy->calendar->set_config('title', 'My calendar title');<br />
+        $this->ciwy->calendar->set_config('mindate',''.date('m').'/04/2010');<br />
+        $this->ciwy->calendar->set_config('maxdate',''.date('m').'/29/2010');<br />
+        $this->ciwy->calendar->set_config('selected',''.date('m').'/17/2010,'.date('m').'/20/2010,'.date('m').'/24/2010-'.date('m').'/27/2010');<br />
+        echo $this->ciwy->calendar->container();<br />
+        echo $this->ciwy->generate();<br />
+      </code>
+
+      <h2>$this->ciwy->calendar->container();</h2>
+      <p>Returns HTML code for the calendar container.</p>
+      <code>
+        echo $this->ciwy->calendar->container();<br />
+        // Produces: &lt;div id="calendar"&gt&lt;/div&gt;<br />
+      </code>
+
+      <h2>$this->ciwy->calendar->create_istance();</h2>
+      <p>Create a new calendar widget istance and return its name.<br />
+      The function accept as optional parameter the name of the new istance, if exists an istance with the same name, the function will first generate a new istance name for you and then the new istance itself.</p>
+      <code>
+        $this->ciwy->calendar->create_istance('cal1');<br />
+      </code>
+
+      <h2>$this->ciwy->calendar->generate();</h2>
+      <p>Return HTML code with JavaScript inside to render a calendar</p>
+      <code>
+        &lt;script type="text/javascript"&gt;<br />
+        &nbsp;&nbsp;YAHOO.namespace("example.calendar");<br />
+        &nbsp;&nbsp;YAHOO.example.calendar.init = function() {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;YAHOO.example.calendar.calendar_t = new YAHOO.widget.Calendar("calendar_t","calendar", {<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD_DAY_POSITION:1, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MD_MONTH_POSITION:2, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDY_DAY_POSITION:1, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDY_MONTH_POSITION:2, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MDY_YEAR_POSITION:3, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_MONTH_POSITION:1, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_YEAR_POSITION:2, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_LABEL_MONTH_POSITION:1, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MY_LABEL_YEAR_POSITION:2, <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MONTHS_LONG:["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MONTHS_SHORT:["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEEKDAYS_SHORT:["Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEEKDAYS_MEDIUM:["Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEEKDAYS_LONG:["Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WEEKDAYS_1CHAR:["D", "L", "M", "M", "G", "V", "S"], <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title:"&lt;center&gt;My calendar title&lt;/center&gt;", <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mindate:"17/04/2010", <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxdate:"25/04/2010", <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selected:"18/04/2010,22/04/2010-24/04/2010", <br />
+        &nbsp;&nbsp;&nbsp;&nbsp;});<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;YAHOO.example.calendar.calendar_t.render();<br />
+        &nbsp;&nbsp;}<br />
+        &nbsp;&nbsp;YAHOO.util.Event.onDOMReady(YAHOO.example.calendar.init);<br />
+        &lt;/script&gt;
+      </code>
+
+      <h2>$this->ciwy->calendar->set_property();</h2>
+      <p>Used to manually set YUI calendar widget property. The function will prevent to set invalid property name.</p>
+      <code>
+        $property = array('title' => 'My Calendar title');<br />
+        $this->ciwy->calendar->set_property($property);<br />
+      </code>
+
+      <h2>$this->ciwy->calendar->set_navigatorProperty();</h2>
+      <p>Used to manually set navigator property of YUI calendar widget. The function will prevent to set invalid property name.</p>
+      <code>
+        $property = array('initialFocus' => 'year');<br />
+        $this->ciwy->calendar->set_navigatorProperty($property);<br />
+      </code>
+
+    </div>
+    <!-- END CONTENT -->
+
+    <div id="footer">
+      <p>
+        Previous Topic:&nbsp;&nbsp;<a href="../components/containercore.html">Container Core Widget</a>
+        &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        Next Topic:&nbsp;&nbsp;<a href="../components/editor.html">Rich Text Editor Widget</a></p>
+      <p><a href="http://blasty.sourceforge.net/">PHP Blasty</a> &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <a href="http://fabio.ingala.it/">Fabio Ingala</a></p>
+    </div>
+
+  </body>
+</html>

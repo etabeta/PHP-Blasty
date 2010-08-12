@@ -1,0 +1,3 @@
+key: m
+query: m
+query: minn

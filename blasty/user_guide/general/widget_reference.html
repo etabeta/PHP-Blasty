@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Common widget function reference : PHP Blasty User Guide</title>
+
+    <link  href="../images/favicon.gif" rel="icon" type="image/gif"/>
+    <style type='text/css' media='all'>@import url('../css/user_guide.css');</style>
+
+    <link type="text/css" rel="stylesheet" href="../css/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="../css/shThemeRDark.css" />
+
+    <script type="text/javascript" src="../js/shCore.js"></script>
+    <script type="text/javascript" src="../js/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/prototype.lite.js"></script>
+    <script type="text/javascript" src="../js/moo.fx.js"></script>
+    <script type="text/javascript" src="../js/user_guide_menu.js"></script>
+
+    <meta http-equiv='expires' content='-1' />
+    <meta http-equiv= 'pragma' content='no-cache' />
+    <meta name='robots' content='all' />
+    <meta name='author' content='Fabio Ingala' />
+    <meta name='description' content='PHP Blasty User Guide' />
+
+  </head>
+  <body>
+
+    <!-- START NAVIGATION -->
+    <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+    <div id="masthead">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+        <tr>
+          <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
+          <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <!-- START BREADCRUMB -->
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tr>
+        <td id="breadcrumb">
+          <a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;
+          <a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+          Common widget function reference
+        </td>
+        <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="blasty.sourceforge.net/user_guide/" />Search PHP Blasty User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+      </tr>
+    </table>
+    <!-- END BREADCRUMB -->
+
+    <br clear="all" />
+
+    <!-- START CONTENT -->
+    <div id="ug-content">
+
+      <h1>Common widget function reference</h1>
+      <p>
+        Blasty widgets have some functions identical, so these function are described here. If differences occurs, theese will be described in the widget function reference page.
+      </p>
+
+      <a name="container"></a><h2>container()</h2>
+      <h3>container([<i>string</i> $js_instance])</h3>
+      <p>
+        Return the HTML code necessary to contain the give instance of YUI component.<br />
+        If no parameter given, the function will return the HTML code of the current JS instance.
+      </p>
+      <h4>Parameters</h4>
+      <h5>$js_instance</h5>
+      The JavaScript instance of YUI component which container will be output.
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        echo $widget->container('cal2');
+        ...
+      </pre>
+
+      <a name="generate"></a><h2>generate()</h2>
+      <h3>generate()</h3>
+      <p>
+        Return the JS code necessary to get YUI work.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        echo $widget->generate();
+        ...
+      </pre>
+
+      <h2><a name="getContainerId"></a>getContainerId()</h2>
+      <h3>getContainerId()</h3>
+      <p>
+        Return the id value of the css container used to contain the widget.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $container_id = $widget->getContainerId();
+        ...
+      </pre>
+
+      <h2><a name="getCurrentInstance"></a>getCurrentInstance()</h2>
+      <h3>getCurrentInstance()</h3>
+      <p>
+        Return the JS current instance of the widget.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $js_instance = $widget->getCurrentInstance();
+        ...
+      </pre>
+
+      <h2><a name="getInstance"></a>getInstance()</h2>
+      <h3>getInstance()</h3>
+      <p>
+        Return the object instance of the widget.<br />
+        Since each widget is a singleton object, to instantiate it use this static function.
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $widget = Calendar::getInstance();
+        ...
+      </pre>
+
+      <a name="setProperty"></a><h2>setProperty()</h2>
+      <h3>setProperty(<i>string</i> $property, <i>string</i> $value) - setProperty(<i>array</i> $property_array)</h3>
+      <p>
+        Set property of the widget.<br />
+        Multiple syntax can be used.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5>$property</h5>
+      The property to set to.
+      <h5>$value</h5>
+      The value which the property is set.
+      <h5>$property_array</h5>
+      An associative array where key is the property and the value is ... the value.
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $calendar->setProperty('PAGES', 3);                 // It will set the calendar property
+        ...
+      </pre>
+
+      <a name="yuiTags"></a><h2>yuiTags()</h2>
+      <h3>yuiTags([<i>const</i> YUI_CSS | YUI_JS])</h3>
+      <p>
+        Return the HTML code to embed YUI css and/or js.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5>YUI_CSS</h5>
+      Return the HTML code to embed only YUI css.
+      <h5>YUI_JS</h5>
+      Return the HTML code to embed only YUI Java Script.
+      <h4>Applies to</h4>
+      This function is applicable only to Blasty.
+      <h4>Examples</h4>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->yuiTags();
+        ...
+      </pre>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->yuiTags(YUI_CSS);
+        ...
+        echo $blasty->yuiTags(YUI_JS);
+        ...
+      </pre>
+
+    </div>
+    <!-- END CONTENT -->
+
+    <div id="footer">
+      <p>
+        Previous Topic:&nbsp;&nbsp;<a href="../general/stylecoding.html">PHP coding style used</a>
+        &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        Next Topic:&nbsp;&nbsp;<a href="../general/utility_reference.html">Utility function reference</a>
+      </p>
+      <p><a href="http://blasty.sourceforge.net/">PHP Blasty</a> &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <a href="http://fabio.ingala.it/">Fabio Ingala</a></p>
+    </div>
+
+    <script type="text/javascript">
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>

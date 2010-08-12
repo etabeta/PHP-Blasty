@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Loading a YUI component : PHP Blasty User Guide</title>
+
+    <link  href="../images/favicon.gif" rel="icon" type="image/gif"/>
+    <style type='text/css' media='all'>@import url('../css/user_guide.css');</style>
+
+    <link type="text/css" rel="stylesheet" href="../css/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="../css/shThemeRDark.css" />
+
+    <script type="text/javascript" src="../js/shCore.js"></script>
+    <script type="text/javascript" src="../js/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/prototype.lite.js"></script>
+    <script type="text/javascript" src="../js/moo.fx.js"></script>
+    <script type="text/javascript" src="../js/user_guide_menu.js"></script>
+
+    <meta http-equiv='expires' content='-1' />
+    <meta http-equiv= 'pragma' content='no-cache' />
+    <meta name='robots' content='all' />
+    <meta name='author' content='Fabio Ingala' />
+    <meta name='description' content='PHP Blasty User Guide' />
+
+  </head>
+  <body>
+
+    <!-- START NAVIGATION -->
+    <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+    <div id="masthead">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+        <tr>
+          <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
+          <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <!-- START BREADCRUMB -->
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tr>
+        <td id="breadcrumb">
+          <a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;
+          <a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+          Loading a YUI component
+        </td>
+        <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="blasty.sourceforge.net/user_guide/" />Search PHP Blasty User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+      </tr>
+    </table>
+    <!-- END BREADCRUMB -->
+
+    <br clear="all" />
+
+    <!-- START CONTENT -->
+    <div id="ug-content">
+
+      <h1>Loading a YUI component</h1>
+      <p>With phpBlasty static class you have gained another php class that helps to embed YUI in HTML page in a correct way. It is <strong>YUILoader</strong>.<br />
+        So phpBlasty has two method to load YUI:
+        <ul>
+          <li>The PHP way PHP generates HTML code to embed YUI</li>
+          <li>The JS way: Generation of JS code that will embed YUI</li>
+        </ul>
+        YUILoader class is automatically inizialized and used by PHP Blasty, but if you want you can freely use it with <dfn>phpBlasty::yuiloader</dfn></p>
+      <p class="important"><strong>Note:</strong> Be careful using this class to prevent unpredictable behaviour.</p>
+
+      <h2>YUILoader: The PHP way</h2>
+      <p>
+        The phpBlasty class has the <var>$phpblasty_config[<dfn>'yui_loader'</dfn>]</var> property that tells phpBlasty which loader method use between '<kbd>php</kbd>' and '<kbd>js</kbd>'. Default is '<strong>php</strong>'.<br />
+        With the PHP way, YUILoader will generate HTML code to embed YUI.
+      </p>
+
+      <h2>YUILoader: The JS way</h2>
+      <p>
+        If you changed the default loader method in '<kbd>js</kbd>', YUILoader will generate JS code that will embed YUI in the page.
+        <!-- <p class="important"><strong>Note:</strong> This class is derived from <a href="http://developer.yahoo.com/yui/phploader/">YUI PHP Loader Utility [beta]</a>.</p> -->
+      </p>
+
+      <h2>Load YUI components</h2>
+      <p>To load one o more YUI component just use in your controller <dfn>phpBlasty::yuiloader->load()</dfn> function providing one component name for each function parameter</p>
+      <pre class="brush: php;">
+        ...
+        phpBlasty::yuiloader->load('calendar', 'autocomplete');
+        ...
+      </pre>
+
+      <h2>Embed YUI in the HTML page</h2>
+      <p>To embed YUI the HTML page just use in your view <dfn>$this->ciwy->yuiTags()</dfn> o <dfn>$this->yuiloader->tags()</dfn> function</p>
+      <pre class="brush: php;">
+        ...
+        echo phpBlasty::yuiloader->yuiTags();
+        ...
+        </pre>
+      See the <a href="../general/page_render.html"><strong>Render pages with YUI components</strong></a> page for more details.
+
+    </div>
+    <!-- END CONTENT -->
+
+    <div id="footer">
+      <p>
+        Previous Topic:&nbsp;&nbsp;<a href="../general/page_render.html">Render pages with YUI components</a>
+        &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        Next Topic:&nbsp;&nbsp;<a href="../general/reserved_names.html">Reserved names</a>
+      </p>
+      <p><a href="http://blasty.sourceforge.net/">PHP Blasty</a> &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <a href="http://fabio.ingala.it/">Fabio Ingala</a></p>
+    </div>
+
+    <script type="text/javascript">
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>

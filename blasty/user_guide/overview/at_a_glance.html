@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PHP Blasty at a glance : PHP Blasty User Guide</title>
+
+    <link  href="../images/favicon.gif" rel="icon" type="image/gif"/>
+    <style type='text/css' media='all'>@import url('../css/user_guide.css');</style>
+
+    <link type="text/css" rel="stylesheet" href="../css/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="../css/shThemeRDark.css" />
+
+    <script type="text/javascript" src="../js/shCore.js"></script>
+    <script type="text/javascript" src="../js/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/prototype.lite.js"></script>
+    <script type="text/javascript" src="../js/moo.fx.js"></script>
+    <script type="text/javascript" src="../js/user_guide_menu.js"></script>
+
+    <meta http-equiv='expires' content='-1' />
+    <meta http-equiv= 'pragma' content='no-cache' />
+    <meta name='robots' content='all' />
+    <meta name='author' content='Fabio Ingala' />
+    <meta name='description' content='PHP Blasty User Guide' />
+
+  </head>
+  <body>
+
+    <!-- START NAVIGATION -->
+    <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+    <div id="masthead">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+        <tr>
+          <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
+          <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <!-- START BREADCRUMB -->
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tr>
+        <td id="breadcrumb">
+          <a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;
+          <a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+          PHP Blasty at a glance
+        </td>
+        <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="blasty.sourceforge.net/user_guide/" />Search PHP Blasty User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+      </tr>
+    </table>
+    <!-- END BREADCRUMB -->
+
+    <br clear="all" />
+
+    <!-- START CONTENT -->
+    <div id="ug-content">
+
+      <h1>PHP Blasty at a glance</h1>
+
+      <h2>PHP Blasty is a YUI wrapper</h2>
+      <p>
+        The PHP Blasty aim is to get YUI working in Your application easly even for who don't know noting on Javascript.
+        Due to this, if you want to build application with complex UI, Blasty is not for You but just a point where to start.<br />
+        PHP Blasty is structured as:
+        <ul>
+          <li>one master class <a href="../general/blasty.html">Blasty</a></li>
+          <li>one static class <a href="../general/phpblasty.html">phpBlasty</a> used as common tool class</li>
+          <li>one class for each YUI component (eg. <samp>calendar</samp>)</li>
+          <li>the <a href="http://developer.yahoo.com/yui/phploader/" target="_blank" class="external">YUI PHP Loader Utility [beta]</a></li>
+          <li>the YUI JS Loader Utility (not yet developed)</li>
+          <li>the language translations</li>
+        </ul>
+      </p>
+
+      <h2>PHP Blasty is dual use</h2>
+      <p>
+        PHP blasty is designed to work in two modes: 'nested' and 'stand-alone'.
+      </p>
+      <h3>Nested design</h3>
+      <p>
+        In this design You instantiate the master class <samp>Blasty</samp> and each time that you ask Blasty to load a component he nests on him that component class.<br />
+        You can operate with the component through the Blasty main class, for example setting a component property:
+        <pre class="brush: php;">
+        ...
+        require_once 'blasty/blasty.php';
+        $blasty = Blasty::getInstance();
+        $blasty->loadComponent('calendar');
+        $blasty->setProperty('PAGES', 3);                 // It will set the calendar property
+        ...
+        $blasty->loadComponent('datatable');
+        $blasty->setProperty('caption', 'Table caption'); // It will set the datatable property
+        ...
+        </pre>
+      </p>
+      <p class="important"><strong>Note:</strong>
+        Function that dialogate with the component class (es. <kbd>setProperty()</kbd>) will dialogate with the last loaded component. It is possible to change the current component using <kbd>$blasty->setCurrentComponent()</kbd>.
+      </p>
+      <p class="important"><strong>Note:</strong>
+        You can access directly to the component with chaining: <kbd>$blasty->calendar->setProperty()</kbd>.
+      </p>
+      <h3>Stand-alone design</h3>
+      <p>
+        PHP Blasty is also a class collection, one class for each YUI component that You can use lonely
+        <pre class="brush: php;">
+        ...
+        require_once 'blasty/components/calendar.php';
+        $calendar = Calendar::getInstance();
+        $calendar->setProperty('PAGES', 3);               // It will set the calendar property
+        ...
+        </pre>
+      </p>
+
+      <h2>PHP Blasty is free</h2>
+      <p>
+        PHP Blasty is licensed under an Apache/BSD-style open source license so you can use it however you please. For more information please read the <a href="../license.html">license agreement</a>.
+      </p>
+
+      <h2>PHP Blasty is (becoming) thoroughly documented</h2>
+      <p>
+        Programmers love to code and hate to write documentation. We're no different, of course, but since documentation is as important as the code itself, we are committed to doing it. Our source code is extremely clean and well commented as well.
+      </p>
+
+    </div>
+    <!-- END CONTENT -->
+
+    <div id="footer">
+      <p>
+        Previous Topic:&nbsp;&nbsp;<a href="../overview/getting_started.html">Getting Started</a>
+        &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        Next Topic:&nbsp;&nbsp;<a href="../general/blasty.html">Blasty Class</a>
+      </p>
+      <p><a href="http://blasty.sourceforge.net/">PHP Blasty</a> &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <a href="http://fabio.ingala.it/">Fabio Ingala</a></p>
+    </div>
+
+    <script type="text/javascript">
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>

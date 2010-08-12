@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Blasty Class : PHP Blasty User Guide</title>
+
+    <link  href="../images/favicon.gif" rel="icon" type="image/gif"/>
+    <style type='text/css' media='all'>@import url('../css/user_guide.css');</style>
+
+    <link type="text/css" rel="stylesheet" href="../css/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="../css/shThemeRDark.css" />
+
+    <script type="text/javascript" src="../js/shCore.js"></script>
+    <script type="text/javascript" src="../js/shBrushPhp.js"></script>
+    <script type="text/javascript" src="../js/nav.js"></script>
+    <script type="text/javascript" src="../js/prototype.lite.js"></script>
+    <script type="text/javascript" src="../js/moo.fx.js"></script>
+    <script type="text/javascript" src="../js/user_guide_menu.js"></script>
+
+    <meta http-equiv='expires' content='-1' />
+    <meta http-equiv= 'pragma' content='no-cache' />
+    <meta name='robots' content='all' />
+    <meta name='author' content='Fabio Ingala' />
+    <meta name='description' content='PHP Blasty User Guide' />
+
+  </head>
+  <body>
+
+    <!-- START NAVIGATION -->
+    <div id="nav"><div id="nav_inner"><script type="text/javascript">create_menu('../');</script></div></div>
+    <div id="nav2"><a name="top"></a><a href="javascript:void(0);" onclick="myHeight.toggle();"><img src="../images/nav_toggle_darker.jpg" width="154" height="43" border="0" title="Toggle Table of Contents" alt="Toggle Table of Contents" /></a></div>
+    <div id="masthead">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+        <tr>
+          <td><h1>PHP Blast YUI - PHP Blasty 0.1.00 Beta</h1></td>
+          <td id="breadcrumb_right"><a href="../toc.html">Table of Contents Page</a></td>
+        </tr>
+      </table>
+    </div>
+    <!-- END NAVIGATION -->
+
+    <!-- START BREADCRUMB -->
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100%">
+      <tr>
+        <td id="breadcrumb">
+          <a href="http://blasty.sourceforge.net/">PHP Blasty Home</a> &nbsp;&#8250;&nbsp;
+          <a href="../index.html">User Guide Home</a> &nbsp;&#8250;&nbsp;
+          Blasty Class
+        </td>
+        <td id="searchbox"><form method="get" action="http://www.google.com/search"><input type="hidden" name="as_sitesearch" id="as_sitesearch" value="blasty.sourceforge.net/user_guide/" />Search PHP Blasty User Guide&nbsp; <input type="text" class="input" style="width:200px;" name="q" id="q" size="31" maxlength="255" value="" />&nbsp;<input type="submit" class="submit" name="sa" value="Go" /></form></td>
+      </tr>
+    </table>
+    <!-- END BREADCRUMB -->
+
+    <br clear="all" />
+
+    <!-- START CONTENT -->
+    <div id="ug-content">
+
+      <h1>Blasty Class</h1>
+      <p>The Blasty class permits to prepare the right environment for YUI components.</p>
+
+      <h2>Preliminary steps</h2>
+      <p>To get Blasty working in you application, You need to include the code and initialize it:</p>
+      <pre class="brush: php; first-line: 0">
+        ...
+        require_once 'blasty/blasty.php';               // To gain blasty class in your php application
+        $blasty = Blasty::getInstance();                // To instantiate the main blasty class
+        ...
+      </pre>
+
+      <h2>Loading a PHP Blasty component</h2>
+      <p>The next step is to load PHP Blasty components with <dfn>loadComponent()</dfn> function.</p>
+      <pre class="brush: php; first-line: 2">
+        ...
+        $calendar = $blasty->loadComponent('calendar'); // To load the calendar YUI widget
+        ...
+      </pre>
+      <p>
+        The function will return the name of the 'instance' (automaticcaly generated) for the loaded component.<br />
+        It is possible to force the instance name.</p>
+      <pre class="brush: php; first-line: 2">
+        ...
+        $calendar = $blasty->loadComponent(array('instance_name' => 'calendar')); // To load the calendar YUI widget
+        ...
+      </pre>
+      <p>
+        Alternative syntax is permitted, in this case the function will return an array of istances where the key is the instance name and the value is the component name:<br />
+        <ul>
+          <li>Multiple component load with automatic instance name generation provided to the function as multiple function arguments</li>
+          <pre class="brush: php; first-line: 2">
+            ...
+            $instances = $blasty->loadComponent('animation', 'calendar', 'autocomplete');
+            ...
+          </pre>
+          <li>Multiple component load with automatic instance name generation provided to the function as list of component name</li>
+          <pre class="brush: php; first-line: 2">
+            ...
+            $components_to_load = array('animation', 'calendar', 'autocomplete');
+            $instances = $blasty->loadComponent($components_to_load);
+            ...
+          </pre>
+          <li>Multiple component load with given instance name provided to the function as associative array where the keys are the instance names and the values are the component names</li>
+          <pre class="brush: php; first-line: 2">
+            ...
+            $components_to_load = array('anim1' => 'animation', 'myCal' => 'calendar', 'ac_instance' => 'autocomplete');
+            $instances = $blasty->loadComponent($components_to_load);
+            ...
+          </pre>
+        </ul>
+      </p>
+      <p>
+        YUI components are automatic loaded by the PHP Blasty component loader, if you need to load only YUI component, please see <a href="../general/yuiloader.html"><strong>Loading a YUI component</strong></a> page.<br />
+        The last step is to <a href="../general/page_render.html"><strong>Render pages with YUI components</strong></a><br />
+        See the <strong>PHP Blasty Widget Reference</strong> and <strong>PHP Blasty Utility Reference</strong> pages for more details.</p>
+      <h1>Function Reference</h1>
+
+      <h2>blastyinfo()</h2>
+      <h3>blastyinfo()</h3>
+      <p>
+        This function, as <dfn>phpinfo()</dfn>, will show a summary with all info about PHP blasty.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter.
+      <h4>Applies to</h4>
+      This function is applicable only to Blasty (nested use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $blasty->blastyinfo();
+        ...
+      </pre>
+
+      <h2>container()</h2>
+      <h3>container(<i>string</i> <var>$component</var> [, <i>string</i> <var>$js_instance</var>])</h3>
+      <p>
+        Return the HTML code necessary to contain the YUI component.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>$component</var></h5>
+      The component-name of the YUI component which container will be output.
+      <h5><var>$js_instance</var></h5>
+      The JavaScript instance of the YUI component which container will be output. Use this parameter if there are more YUI same components.
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use) that have container. At the moment they are:
+      <ul>
+        <li><a href="../components/autocomplete.html">autocomplete</a></li>
+        <li><a href="../components/calendar.html">calendar</a></li>
+        <li><a href="../components/datatable.html">datatable</a></li>
+      </ul>
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->container('calendar');
+        ...
+        echo $blasty->container('calendar', 'cal2');
+        ...
+      </pre>
+
+      <h2>generate()</h2>
+      <h3>generate()</h3>
+      <p>
+        Return the JS code necessary to get YUI work.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->generate();
+        ...
+      </pre>
+
+      <h2>getContainerId()</h2>
+      <h3>getContainerId()</h3>
+      <p>
+        Return the id value of the css container used to contain the current YUI component.<br />
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use) that have container. At the moment they are:
+      <ul>
+        <li><a href="../components/autocomplete.html">autocomplete</a></li>
+        <li><a href="../components/calendar.html">calendar</a></li>
+        <li><a href="../components/datatable.html">datatable</a></li>
+      </ul>
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $container_id = $blasty->getContainerId();
+        ...
+      </pre>
+
+      <h2>getInstance()</h2>
+      <h3>getInstance()</h3>
+      <p>
+        Return the object instance of Blasty.<br />
+        Since Blasty is a singleton object, to instantiate it use this static function.
+      </p>
+      <h4>Parameters</h4>
+      This function ha no parameter
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $blasty = Blasty::getInstance();
+        ...
+      </pre>
+
+      <h2>loadComponent()</h2>
+      <h3>loadComponent(<i>string</i> <var>$component</var> [, <i>string</i> <var>$component</var>]) - loadComponent(<i>array</i> <var>$component_array</var>)</h3>
+      <p>
+        Load Blasty and YUI component, return their JS instances.<br />
+        As explained above there are multiple syntax that can be used.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>$component</var></h5>
+      The component to load.
+      <h5><var>$component_array</var></h5>
+      The array of component to load as:
+      <ul>
+        <li>non-associative array where each element is the component to load</li>
+        <li>associative array where the key is the JS instance and the value is the component to load</li>
+      </ul>
+      <h4>Applies to</h4>
+      This function is applicable only to Blasty (nested use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $instances = $blasty->loadComponent(array('anim1' => 'animation', 'myCal' => 'calendar', 'ac_instance' => 'autocomplete'));
+        ...
+      </pre>
+
+      <h2>setColumProperty()</h2>
+      <h3>setColumProperty(<i>array</i> <var>$property</var>)</h3>
+      <p>
+        Set column property for the <a href="../components/datatable.html">datatable</a> widget.<br />
+        Multiple syntax can be used.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>$property</var></h5>
+      The property to set as a nested associative array where parent key is the column key (eg. id, amount, etc.) and the the child are couple of property => value (eg 'sortable' => true).
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) only when loaded <a href="../components/datatable.html">datatable</a> widget or to <a href="../components/datatable.html">datatable</a> widget (stand-alone use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $blasty->setColumnProperty(
+          array(
+              'id'       => array('label' => 'ID',     'sortable' => true,  'resizeable' => true),
+              'amount'   => array('label' => 'Amount', 'sortable' => true,  'resizeable' => true),
+              'quantity' => array('label' => 'Q.ty',   'sortable' => true,  'resizeable' => false),
+              'title'    => array('label' => 'Title',  'sortable' => false, 'resizeable' => true),
+               )
+        );
+        ...
+      </pre>
+
+      <h2>setCurrentComponent()</h2>
+      <h3>setCurrentComponent(<i>string</i> <var>$js_instance</var>)</h3>
+      <p>
+        Set the current component to component associated to the given JS instance.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>$js_instance</var></h5>
+      The JavaScript instance of which component will be set as current.
+      <h4>Applies to</h4>
+      This function is applicable only to Blasty (nested use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $blasty->setCurrentComponent('cal1');
+        ...
+      </pre>
+
+      <h2>setDataType()</h2>
+      Work in progress
+
+      <h2>setelementReference()</h2>
+      Work in progress
+
+      <h2>setliveData()</h2>
+      Work in progress
+
+      <h2>setProperty()</h2>
+      <h3>setProperty(<i>string</i> <var>$property</var>, <i>string</i> <var>$value</var>) - setProperty(<i>array</i> <var>$property_array</var>)</h3>
+      <p>
+        Set property of the current widget.<br />
+        Multiple syntax can be used.<br />
+        To change the current widget, see <kbd>setCurrentComponent()</kbd> function.
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>$property</var></h5>
+      The property to set to.
+      <h5><var>$value</var></h5>
+      The value which the property is set.
+      <h5><var>$property_array</var></h5>
+      An associative array where key is the property and the value is ... the value.
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use).
+      <h4>Example</h4>
+      <pre class="brush: php;">
+        ...
+        $blasty->setProperty('PAGES', 3);                 // It will set the calendar property
+        ...
+      </pre>
+
+      <h2>setResponseSchema()</h2>
+      Work in progress
+
+      <h2>yuiTags()</h2>
+      <h3>yuiTags([<i>const</i> <var>YUI_CSS</var> | <var>YUI_JS</var>])</h3>
+      <p>
+        Return the HTML code to embed YUI css and/or js.<br />
+      </p>
+      <h4>Parameters</h4>
+      <h5><var>YUI_CSS</var></h5>
+      Return the HTML code to embed only YUI css.
+      <h5><var>YUI_JS</var></h5>
+      Return the HTML code to embed only YUI Java Script.
+      <h4>Applies to</h4>
+      This function is applicable to Blasty (nested use) or to each widget (stand-alone use).
+      <h4>Examples</h4>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->yuiTags();
+        ...
+      </pre>
+      <pre class="brush: php;">
+        ...
+        echo $blasty->yuiTags(YUI_CSS);
+        ...
+        echo $blasty->yuiTags(YUI_JS);
+        ...
+      </pre>
+
+    </div>
+    <!-- END CONTENT -->
+
+    <div id="footer">
+      <p>
+        Previous Topic:&nbsp;&nbsp;<a href="../overview/at_a_glance.html">PHP Blasty at a glance</a>
+        &nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="#top">Top of Page</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        <a href="../index.html">User Guide Home</a>&nbsp;&nbsp;&nbsp;&middot;&nbsp;&nbsp;
+        Next Topic:&nbsp;&nbsp;<a href="../general/phpblasty.html">PHP Blasty Class</a>
+      </p>
+      <p><a href="http://blasty.sourceforge.net/">PHP Blasty</a> &nbsp;&middot;&nbsp; Copyright &#169; 2010 &nbsp;&middot;&nbsp; <a href="http://fabio.ingala.it/">Fabio Ingala</a></p>
+    </div>
+
+    <script type="text/javascript">
+      SyntaxHighlighter.all()
+    </script>
+  </body>
+</html>
